@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import BlogSection from "./components/BlogSection";
 import PodcastSection from "./components/PodcastSection";
 import PortfolioSection from "./components/PortfolioSection";

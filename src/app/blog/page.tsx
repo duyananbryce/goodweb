@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
@@ -34,7 +34,7 @@ const initialPosts: BlogPost[] = [
 ];
 
 export default function Blog() {
-  const posts = initialPosts;
+  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -53,18 +53,28 @@ export default function Blog() {
                 />
               </div>
               <div className="p-6">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{post.title}</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{post.excerpt}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-sm">
+                  {post.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="px-2 py-1 text-sm rounded-md bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+                    >
                       {tag}
                     </span>
                   ))}
                 </div>
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {post.title}
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{post.excerpt}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-500 dark:text-gray-400">{post.date}</span>
-                  <Link href={`/blog/${post.id}`} className="text-blue-600 dark:text-blue-400 hover:underline">阅读更多</Link>
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                  >
+                    阅读更多 →
+                  </Link>
                 </div>
               </div>
             </article>
