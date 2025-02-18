@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 
 interface BlogPost {
   title: string;
@@ -48,29 +47,24 @@ export default function BlogSection() {
           {blogPosts.map((post, index) => (
             <article key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl group">
               <div className="relative h-48 w-full overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-500 group-hover:scale-110 transition-transform duration-300" />
-                <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 dark:bg-gray-900/90 rounded-full text-sm font-medium text-purple-600 dark:text-purple-400">
-                  {post.category}
-                </div>
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${post.imageUrl})` }}
+                />
               </div>
               <div className="p-6">
-                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3 space-x-4">
-                  <span>{post.date}</span>
-                  <span>·</span>
-                  <span>{post.readTime}</span>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-medium text-purple-600 dark:text-purple-400">{post.category}</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">{post.readTime}</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
-                  {post.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
-                  {post.excerpt}
-                </p>
-                <button className="inline-flex items-center text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors duration-200">
-                  阅读更多
-                  <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">{post.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{post.excerpt}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">{post.date}</span>
+                  <button className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+                    阅读更多 →
+                  </button>
+                </div>
               </div>
             </article>
           ))}
