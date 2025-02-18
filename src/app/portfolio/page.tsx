@@ -2,8 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import Papa from 'papaparse';
 
 interface Project {
   id: number;
@@ -14,6 +12,9 @@ interface Project {
   account: string;
   image: string;
 }
+
+import { useState, useEffect } from 'react';
+import Papa from 'papaparse';
 
 const useProjects = () => {
   const [projects, setProjects] = useState<Project[]>([]);

@@ -34,8 +34,7 @@ const initialPosts: BlogPost[] = [
 ];
 
 export default function Blog() {
-  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
-
+  const posts = initialPosts;
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <Navbar />
